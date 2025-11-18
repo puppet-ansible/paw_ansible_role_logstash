@@ -1,0 +1,112 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Execute the entire Ansible role imperatively",
+  "input_method": "environment",
+  "parameters": {
+    "logstash_listen_port_beats": {
+      "description": "Ansible role variable (default: 5044)",
+      "type": "Optional[Integer]"
+    },
+    "logstash_ssl_dir": {
+      "description": "Ansible role variable (default: /etc/pki/logstash)",
+      "type": "Optional[String]"
+    },
+    "logstash_local_syslog_path": {
+      "description": "Ansible role variable (default: /var/log/syslog)",
+      "type": "Optional[String]"
+    },
+    "logstash_version": {
+      "description": "Ansible role variable (default: 7.x)",
+      "type": "Optional[String]"
+    },
+    "logstash_package": {
+      "description": "Ansible role variable (default: logstash)",
+      "type": "Optional[String]"
+    },
+    "logstash_elasticsearch_hosts": {
+      "description": "Ansible role variable (default: [\"http://localhost:9200\"])",
+      "type": "Optional[Array]"
+    },
+    "logstash_monitor_local_syslog": {
+      "description": "Ansible role variable (default: true)",
+      "type": "Optional[Boolean]"
+    },
+    "logstash_dir": {
+      "description": "Ansible role variable (default: /usr/share/logstash)",
+      "type": "Optional[String]"
+    },
+    "logstash_ssl_certificate_file": {
+      "description": "Ansible role variable (default: )",
+      "type": "Optional[String]"
+    },
+    "logstash_ssl_key_file": {
+      "description": "Ansible role variable (default: )",
+      "type": "Optional[String]"
+    },
+    "logstash_enabled_on_boot": {
+      "description": "Ansible role variable (default: true)",
+      "type": "Optional[Boolean]"
+    },
+    "logstash_install_plugins": {
+      "description": "Ansible role variable (default: [\"logstash-input-beats\", \"logstash-filter-multiline\"])",
+      "type": "Optional[Array]"
+    },
+    "logstash_setup_default_config": {
+      "description": "Ansible role variable (default: true)",
+      "type": "Optional[Boolean]"
+    },
+    "par_tags": {
+      "description": "An array of Ansible tags to execute (optional)",
+      "type": "Optional[Array[String]]"
+    },
+    "par_skip_tags": {
+      "description": "An array of Ansible tags to skip (optional)",
+      "type": "Optional[Array[String]]"
+    },
+    "par_start_at_task": {
+      "description": "The name of the task to start execution at (optional)",
+      "type": "Optional[String]"
+    },
+    "par_limit": {
+      "description": "Limit playbook execution to specific hosts (optional)",
+      "type": "Optional[String]"
+    },
+    "par_verbose": {
+      "description": "Enable verbose output from Ansible (optional)",
+      "type": "Optional[Boolean]"
+    },
+    "par_check_mode": {
+      "description": "Run Ansible in check mode (dry-run) (optional)",
+      "type": "Optional[Boolean]"
+    },
+    "par_timeout": {
+      "description": "Timeout in seconds for playbook execution (optional)",
+      "type": "Optional[Integer]"
+    },
+    "par_user": {
+      "description": "Remote user to use for Ansible connections (optional)",
+      "type": "Optional[String]"
+    },
+    "par_env_vars": {
+      "description": "Additional environment variables for ansible-playbook execution (optional)",
+      "type": "Optional[Hash]"
+    }
+  },
+  "implementations": [
+    {
+      "name": "paw_ansible_role_logstash.sh",
+      "requirements": [
+        "shell"
+      ],
+      "input_method": "environment"
+    },
+    {
+      "name": "paw_ansible_role_logstash.ps1",
+      "requirements": [
+        "powershell"
+      ],
+      "input_method": "environment"
+    }
+  ]
+}
