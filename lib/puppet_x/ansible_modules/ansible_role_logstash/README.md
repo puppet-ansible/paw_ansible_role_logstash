@@ -92,7 +92,7 @@ If you are seeing high CPU usage from one of the `logstash` processes, and you'r
           set_fact:
             java_packages:
               - openjdk-8-jdk
-          when: ansible_os_family == 'Debian'
+          when: ansible_facts.os_family == 'Debian'
     
       roles:
         - geerlingguy.java

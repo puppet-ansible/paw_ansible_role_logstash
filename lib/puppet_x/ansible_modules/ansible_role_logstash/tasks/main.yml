@@ -1,6 +1,6 @@
 ---
 - name: Include OS Specific setup tasks
-  include_tasks: setup-{{ ansible_os_family }}.yml
+  include_tasks: setup-{{ ansible_facts.os_family }}.yml
 
 - include_tasks: config.yml
 - include_tasks: ssl.yml
