@@ -56,40 +56,40 @@ class paw_ansible_role_logstash (
 # Execute the Ansible role using PAR (Puppet Ansible Runner)
 # Playbook synced via pluginsync to agent's cache directory
 # Check for common paw::par_vardir setting, then module-specific, then default
-$_par_vardir = $par_vardir ? {
-  undef   => lookup('paw::par_vardir', Stdlib::Absolutepath, 'first', '/opt/puppetlabs/puppet/cache'),
-  default => $par_vardir,
-}
-$playbook_path = "${_par_vardir}/lib/puppet_x/ansible_modules/ansible_role_logstash/playbook.yml"
+  $_par_vardir = $par_vardir ? {
+    undef   => lookup('paw::par_vardir', Stdlib::Absolutepath, 'first', '/opt/puppetlabs/puppet/cache'),
+    default => $par_vardir,
+  }
+  $playbook_path = "${_par_vardir}/lib/puppet_x/ansible_modules/ansible_role_logstash/playbook.yml"
 
-par { 'paw_ansible_role_logstash-main':
-  ensure        => present,
-  playbook      => $playbook_path,
-  playbook_vars => {
-        'logstash_listen_port_beats' => $logstash_listen_port_beats,
-        'logstash_ssl_dir' => $logstash_ssl_dir,
-        'logstash_local_syslog_path' => $logstash_local_syslog_path,
-        'logstash_version' => $logstash_version,
-        'logstash_package' => $logstash_package,
-        'logstash_elasticsearch_hosts' => $logstash_elasticsearch_hosts,
-        'logstash_monitor_local_syslog' => $logstash_monitor_local_syslog,
-        'logstash_dir' => $logstash_dir,
-        'logstash_ssl_certificate_file' => $logstash_ssl_certificate_file,
-        'logstash_ssl_key_file' => $logstash_ssl_key_file,
-        'logstash_enabled_on_boot' => $logstash_enabled_on_boot,
-        'logstash_install_plugins' => $logstash_install_plugins,
-        'logstash_setup_default_config' => $logstash_setup_default_config
-              },
-  tags          => $par_tags,
-  skip_tags     => $par_skip_tags,
-  start_at_task => $par_start_at_task,
-  limit         => $par_limit,
-  verbose       => $par_verbose,
-  check_mode    => $par_check_mode,
-  timeout       => $par_timeout,
-  user          => $par_user,
-  env_vars      => $par_env_vars,
-  logoutput     => $par_logoutput,
-  exclusive     => $par_exclusive,
-}
+  par { 'paw_ansible_role_logstash-main':
+    ensure        => present,
+    playbook      => $playbook_path,
+    playbook_vars => {
+      'logstash_listen_port_beats'    => $logstash_listen_port_beats,
+      'logstash_ssl_dir'              => $logstash_ssl_dir,
+      'logstash_local_syslog_path'    => $logstash_local_syslog_path,
+      'logstash_version'              => $logstash_version,
+      'logstash_package'              => $logstash_package,
+      'logstash_elasticsearch_hosts'  => $logstash_elasticsearch_hosts,
+      'logstash_monitor_local_syslog' => $logstash_monitor_local_syslog,
+      'logstash_dir'                  => $logstash_dir,
+      'logstash_ssl_certificate_file' => $logstash_ssl_certificate_file,
+      'logstash_ssl_key_file'         => $logstash_ssl_key_file,
+      'logstash_enabled_on_boot'      => $logstash_enabled_on_boot,
+      'logstash_install_plugins'      => $logstash_install_plugins,
+      'logstash_setup_default_config' => $logstash_setup_default_config,
+    },
+    tags          => $par_tags,
+    skip_tags     => $par_skip_tags,
+    start_at_task => $par_start_at_task,
+    limit         => $par_limit,
+    verbose       => $par_verbose,
+    check_mode    => $par_check_mode,
+    timeout       => $par_timeout,
+    user          => $par_user,
+    env_vars      => $par_env_vars,
+    logoutput     => $par_logoutput,
+    exclusive     => $par_exclusive,
+  }
 }
